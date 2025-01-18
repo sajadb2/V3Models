@@ -25,8 +25,8 @@ jobs:
 
       - name: Run model and show results
         run: |
-          python your_model_script.py
-          # Assuming your_model_script.py prints the model results
+          python train_model_Transformer.py
+          # Assuming train_model_Transformer.py prints the model results
           echo "Model results:"
           # Add any additional commands to display results if needed
           
