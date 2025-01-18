@@ -1,12 +1,13 @@
-name: Deploy to Hugging Face Space
+# path/to/deploy.yml
+name: Deploy Model
 
 on:
   push:
     branches:
-      - main  # Change this to your default branch if it's not 'main'
+      - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,17 +17,17 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'  # Specify the Python version you need
+          python-version: '3.8'
 
       - name: Install dependencies
         run: |
-          pip install --no-cache-dir -r requirements.txt
+          pip install -r requirements.txt
 
-      - name: Deploy to Hugging Face Space
+      - name: Run model and show results
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git remote add hf https://$HF_TOKEN@huggingface.co/spaces/username/space_name
-          git add .
-          git commit -m "Deploying to Hugging Face Space"
-          git push hf main  # Change 'main' if your default branch is different
+          python your_model_script.py
+          # Assuming your_model_script.py prints the model results
+          echo "Model results:"
+          # Add any additional commands to display results if needed
+          
+      # ... other existing steps ...
