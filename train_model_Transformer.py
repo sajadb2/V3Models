@@ -7,6 +7,7 @@ from dataclasses import dataclass
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
+import logging
 
 
 class CausalSelfAttention(nn.Module):
@@ -254,6 +255,20 @@ scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.5)  
 
 # Define the number of gradient accumulation steps
 accumulation_steps = 4  # Adjust this based on your effective batch size
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+
+def train_model(model, data_loader, epochs):
+    for epoch in range(epochs):
+        for batch in data_loader:
+            # Simulate training step
+            loss = ...  # Calculate loss here
+            logging.info(f"Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}")
+
+            # Log model predictions if needed
+            # predictions = model(batch)
+            # logging.info(f"Predictions: {predictions}")
 
 # Training loop
 for i in range(50):
